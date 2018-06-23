@@ -27,7 +27,7 @@ object WeatherProgram {
     cityResponse <- G.getCityResponse(ip)
     filePath <- F.getFilePath("resources/weather.key")
     reader <- I.getBufferedReader(filePath)
-    key <- WRQ.getKey(reader)
+    key <- I.readLine(reader)
     _ <- I.close(reader)
     uri <- WRQ.getUrl(cityResponse.getLocation.getLatitude,
       cityResponse.getLocation.getLongitude, key)
