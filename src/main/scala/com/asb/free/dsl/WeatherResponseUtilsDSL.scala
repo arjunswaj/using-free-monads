@@ -11,7 +11,7 @@ object WeatherResponseUtilsDSL {
 
   class WeatherResponseActions[F[_]](implicit I: InjectK[WeatherResponseAction, F]) {
 
-    type WeatherResponseActionF[A] = Free[WeatherResponseAction, A]
+    type WeatherResponseActionF[A] = Free[F, A]
 
     def getTemperature(response: String): WeatherResponseActionF[Double] =
       Free.inject(GetTemperature(response))

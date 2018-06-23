@@ -13,7 +13,7 @@ object NetworkDSL {
 
   class NetworkActions[F[_]](implicit I: InjectK[NetworkAction, F]) {
 
-    type NetworkActionF[A] = Free[NetworkAction, A]
+    type NetworkActionF[A] = Free[F, A]
 
     def doGet(uri: URI): NetworkActionF[String] =
       Free.inject(DoGet(uri))

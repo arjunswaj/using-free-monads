@@ -40,7 +40,7 @@ object FileDSL {
   }
 
   object FileActions {
-    def apply[F[_]]: FileActions[F] = new FileActions[F]
+    def apply[F[_]](implicit I: InjectK[FileAction, F]): FileActions[F] = new FileActions[F]
   }
 
 }

@@ -16,7 +16,7 @@ object IODSL {
 
   class IOActions[F[_]](implicit I: InjectK[IOAction, F]) {
 
-    type IOActionF[A] = Free[IOAction, A]
+    type IOActionF[A] = Free[F, A]
 
     def getBufferedReader(path: Path): IOActionF[BufferedReader] =
       Free.inject(GetBufferedReader(path))
