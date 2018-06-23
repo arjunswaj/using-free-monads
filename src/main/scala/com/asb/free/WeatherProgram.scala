@@ -3,6 +3,7 @@ package com.asb.free
 import cats.data.EitherK
 import cats.free.Free
 import cats.implicits._
+import cats.{Id, ~>}
 import com.asb.free.dsl.ConsoleDSL.{ConsoleAction, ConsoleActions}
 import com.asb.free.dsl.FileDSL.{FileAction, FileActions}
 import com.asb.free.dsl.GeoModelDSL.{GeoModelAction, GeoModelActions}
@@ -10,6 +11,7 @@ import com.asb.free.dsl.IODSL.{IOAction, IOActions}
 import com.asb.free.dsl.NetworkDSL.{NetworkAction, NetworkActions}
 import com.asb.free.dsl.WeatherRequestUtilsDSL.{WeatherRequestAction, WeatherRequestActions}
 import com.asb.free.dsl.WeatherResponseUtilsDSL.{WeatherResponseAction, WeatherResponseActions}
+import com.asb.free.interpreter._
 
 object WeatherProgram {
 
@@ -44,7 +46,14 @@ object WeatherProgram {
     implicit val WRQ: WeatherRequestActions[P] = WeatherRequestActions[P]
     implicit val WRS: WeatherResponseActions[P] = WeatherResponseActions[P]
 
-    val temperature = getTemperatureByIp
+    val i1: P1 ~> Id = ConsoleInterpreter or FileInterpreter
+    val i2: P2 ~> Id = IOInterpreter or i1
+    val i3: P3 ~> Id = NetworkInterpreter or i2
+    val i4: P4 ~> Id = GeoModelInterpreter or i3
+    val i5: P5 ~> Id = WeatherRequestInterpreter or i4
+    val interpreter: P ~> Id = WeatherResponseInterpreter or i5
+
+    val temperature = getTemperatureByIp.foldMap(interpreter)
     println(temperature)
   }
 
