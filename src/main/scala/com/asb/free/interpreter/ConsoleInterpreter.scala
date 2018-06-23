@@ -6,7 +6,7 @@ import cats.{Id, ~>}
 import com.asb.free.dsl.ConsoleDSL.{ConsoleAction, ReadLine, Write}
 
 object ConsoleInterpreter extends (ConsoleAction ~> Id) {
-  override def apply[A](fa: ConsoleAction[A]): Id[A] = fa {
+  override def apply[A](fa: ConsoleAction[A]): Id[A] = fa match {
     case ReadLine() =>
       val scanner = new Scanner(System.in)
       scanner.next()
