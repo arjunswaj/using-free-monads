@@ -33,5 +33,11 @@
     <orderEntry type="library" name="sbt: org.apache.httpcomponents:httpclient:4.5.5:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.httpcomponents:httpcore:4.4.9:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.httpcomponents:fluent-hc:4.5.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.11.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-core_2.11:1.1.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-free_2.11:1.1.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-kernel_2.11:1.1.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-macros_2.11:1.1.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:machinist_2.11:0.6.2:jar" level="project" />
   </component>
 </module>
