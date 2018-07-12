@@ -25,7 +25,7 @@ object WeatherProgram {
     implicit val G: GeoModelActions[P] = GeoModelActions[P]
 
     val i1: P1 ~> Id = ConsoleInterpreter or WeatherServiceInterpreters.interpreter
-    val interpreter: P ~> Id = GeoModelInterpreter or i1
+    val interpreter: P ~> Id = GeoModelInterpreters.interpreter or i1
 
     val temperature = getTemperatureByIp.foldMap(interpreter)
     println(temperature)
