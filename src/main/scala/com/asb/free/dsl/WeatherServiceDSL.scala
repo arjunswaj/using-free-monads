@@ -23,6 +23,11 @@ object WeatherServiceDSL {
     def getTemperature(cityResponse: CityResponse, key: String): WeatherServiceActionsF[Double] =
       inject(GetTemperature(cityResponse, key))
 
+    def getTemperature(cityResponse: CityResponse): WeatherServiceActionsF[Double] = for {
+      key <- getKey
+      temperature <- getTemperature(cityResponse, key)
+    } yield temperature
+
   }
 
   object WeatherServiceActions {

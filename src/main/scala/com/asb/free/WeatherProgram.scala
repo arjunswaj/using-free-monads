@@ -16,8 +16,7 @@ object WeatherProgram {
   def getTemperatureByIp(implicit C: ConsoleActions[P], W: WeatherServiceActions[P], G: GeoModelActions[P]): Free[P, Double] = for {
     ip <- C.readLine
     cityResponse <- G.getCityResponse(ip)
-    key <- W.getKey
-    temperature <- W.getTemperature(cityResponse, key)
+    temperature <- W.getTemperature(cityResponse)
   } yield temperature
 
   def main(args: Array[String]): Unit = {
